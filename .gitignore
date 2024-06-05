@@ -1,0 +1,19 @@
+node_modules
+.DS_Store
+.next
+todo.md
+current.md
+dist
+yarn-error.log
+.prettierignore
+.env
+.vscode
+storybook-static
+packages/playground/out
+packages/starter
+packages/mdx/components.d.ts
+
+# Contentlayer
+.contentlayer
+
+todo.md

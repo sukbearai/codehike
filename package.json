@@ -1,0 +1,38 @@
+{
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/mdx",
+      "playground",
+      "site"
+    ]
+  },
+  "scripts": {
+    "build": "lerna run --stream build",
+    "build:lib": "lerna run --stream --scope @*/mdx build",
+    "watch": "lerna run --stream --scope @*/mdx watch",
+    "build:playground": "lerna run --stream --scope playground build",
+    "test": "lerna run --stream test",
+    "dev": "lerna run --stream --scope @*/mdx dev",
+    "release": "auto shipit"
+  },
+  "devDependencies": {
+    "auto": "^10.18.7",
+    "lerna": "^4.0.0",
+    "prettier": "^2.5.1"
+  },
+  "repository": "code-hike/codehike",
+  "author": "pomber <pombopombopombo@gmail.com>",
+  "auto": {
+    "plugins": [
+      "npm",
+      [
+        "released",
+        {
+          "message": "Released in `%VERSION` :rocket:  \n\nThanks for using Code Hike! **[Become a sponsor](https://github.com/sponsors/code-hike?metadata_source=%TYPE)** and help us keep innovating."
+        }
+      ]
+    ],
+    "onlyPublishWithReleaseLabel": true
+  }
+}

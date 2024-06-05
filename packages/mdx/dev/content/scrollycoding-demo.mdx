@@ -1,0 +1,39 @@
+<CH.Scrollycoding  showCopyButton={false} rows="focus" showExpandButton={false}>
+
+```vue pages/use-tsx/index.vue
+<script setup lang="ts">
+definePageMeta({
+  layout: false
+})
+</script>
+
+<template>
+  <div>
+    Hello, Nuxt3!
+  </div>
+</template>
+```
+
+---
+
+```vue pages/use-tsx/index.vue
+<script setup lang="tsx">
+definePageMeta({
+  layout: false
+})
+
+const Foo = (props: { msg: string }) => {
+  return <div>{props.msg}</div>
+}
+</script>
+
+<template>
+  <div>
+    Hello, Nuxt3!
+
+    <Foo msg="这是一个TSX组件" />
+  </div>
+</template>
+```
+
+</CH.Scrollycoding>
