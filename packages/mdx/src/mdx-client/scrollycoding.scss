@@ -42,7 +42,7 @@
   width: var(--ch-scrollycoding-sticker-width, 100vw);
   // capitalized Min to avoid usint the sass min
   min-height: Min(100%, 80vh);
-  max-height: 80vh;
+  // max-height: 80vh;
 }
 
 .ch-scrollycoding-with-preview {
