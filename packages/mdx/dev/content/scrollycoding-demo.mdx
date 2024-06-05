@@ -2,25 +2,21 @@
 
 ```vue pages/use-tsx/index.vue
 <script setup lang="ts">
-definePageMeta({
-  layout: false
-})
+const msg = ref('Nuxt3!')
 </script>
 
 <template>
-  <div>
-    Hello, Nuxt3!
+  <div class="page">
+    Hello, {{msg}}
   </div>
 </template>
 ```
 
 ---
 
-```vue pages/use-tsx/index.vue
+```vue pages/use-tsx/index.vue focus=4:6
 <script setup lang="tsx">
-definePageMeta({
-  layout: false
-})
+const msg = ref('Nuxt3!')
 
 const Foo = (props: { msg: string }) => {
   return <div>{props.msg}</div>
@@ -28,8 +24,26 @@ const Foo = (props: { msg: string }) => {
 </script>
 
 <template>
-  <div>
-    Hello, Nuxt3!
+  <div class="page">
+    Hello, {{msg}}
+  </div>
+</template>
+```
+
+---
+
+```vue pages/use-tsx/index.vue focus=13:13
+<script setup lang="tsx">
+const msg = ref('Nuxt3!')
+
+const Foo = (props: { msg: string }) => {
+  return <div>{props.msg}</div>
+}
+</script>
+
+<template>
+  <div class="page">
+    Hello, {{msg}}
 
     <Foo msg="这是一个TSX组件" />
   </div>
