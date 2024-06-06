@@ -1,52 +1,386 @@
 <CH.Scrollycoding  showCopyButton={false} rows="focus" showExpandButton={false}>
 
-```vue pages/use-tsx/index.vue
+```json package.json
+ "scripts": {
+  ...
+ },
+ "dependencies": {
+  "vue-echarts": "^6.7.3"
+ },
+ "devDependencies": {
+  ...
+ }
+```
+
+---
+
+```vue components/ECharts.vue
+<script lang="ts" setup>
+import VCharts from 'vue-echarts'
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { BarChart, LineChart, PieChart, RadarChart } from 'echarts/charts'
+import {
+  DataZoomComponent,
+  GraphicComponent,
+  GridComponent,
+  LegendComponent,
+  TitleComponent,
+  TooltipComponent,
+} from 'echarts/components'
+</script>
+```
+
+---
+
+```vue components/ECharts.vue focus=15:27
+<script lang="ts" setup>
+import VCharts from 'vue-echarts'
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { BarChart, LineChart, PieChart, RadarChart } from 'echarts/charts'
+import {
+  DataZoomComponent,
+  GraphicComponent,
+  GridComponent,
+  LegendComponent,
+  TitleComponent,
+  TooltipComponent,
+} from 'echarts/components'
+
+use([
+  CanvasRenderer,
+  BarChart,
+  LineChart,
+  PieChart,
+  RadarChart,
+  GridComponent,
+  TooltipComponent,
+  TitleComponent,
+  LegendComponent,
+  DataZoomComponent,
+  GraphicComponent,
+])
+</script>
+```
+---
+
+```vue components/ECharts.vue focus=29:48
+<script lang="ts" setup>
+import VCharts from 'vue-echarts'
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { BarChart, LineChart, PieChart, RadarChart } from 'echarts/charts'
+import {
+  DataZoomComponent,
+  GraphicComponent,
+  GridComponent,
+  LegendComponent,
+  TitleComponent,
+  TooltipComponent,
+} from 'echarts/components'
+
+use([
+  CanvasRenderer,
+  BarChart,
+  LineChart,
+  PieChart,
+  RadarChart,
+  GridComponent,
+  TooltipComponent,
+  TitleComponent,
+  LegendComponent,
+  DataZoomComponent,
+  GraphicComponent,
+])
+
+defineProps({
+  options: {
+    type: Object,
+    default() {
+      return {}
+    },
+  },
+  autoResize: {
+    type: Boolean,
+    default: true,
+  },
+  width: {
+    type: String,
+    default: '100%',
+  },
+  height: {
+    type: String,
+    default: '100%',
+  },
+})
+</script>
+```
+---
+
+```vue components/ECharts.vue focus=50:54
+<script lang="ts" setup>
+import VCharts from 'vue-echarts'
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { BarChart, LineChart, PieChart, RadarChart } from 'echarts/charts'
+import {
+  DataZoomComponent,
+  GraphicComponent,
+  GridComponent,
+  LegendComponent,
+  TitleComponent,
+  TooltipComponent,
+} from 'echarts/components'
+
+use([
+  CanvasRenderer,
+  BarChart,
+  LineChart,
+  PieChart,
+  RadarChart,
+  GridComponent,
+  TooltipComponent,
+  TitleComponent,
+  LegendComponent,
+  DataZoomComponent,
+  GraphicComponent,
+])
+
+defineProps({
+  options: {
+    type: Object,
+    default() {
+      return {}
+    },
+  },
+  autoResize: {
+    type: Boolean,
+    default: true,
+  },
+  width: {
+    type: String,
+    default: '100%',
+  },
+  height: {
+    type: String,
+    default: '100%',
+  },
+})
+
+const renderChart = ref(false)
+// wait container expand
+nextTick(() => {
+  renderChart.value = true
+})
+</script>
+```
+
+---
+
+```vue components/ECharts.vue focus=56:64
+<script lang="ts" setup>
+import VCharts from 'vue-echarts'
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { BarChart, LineChart, PieChart, RadarChart } from 'echarts/charts'
+import {
+  DataZoomComponent,
+  GraphicComponent,
+  GridComponent,
+  LegendComponent,
+  TitleComponent,
+  TooltipComponent,
+} from 'echarts/components'
+
+use([
+  CanvasRenderer,
+  BarChart,
+  LineChart,
+  PieChart,
+  RadarChart,
+  GridComponent,
+  TooltipComponent,
+  TitleComponent,
+  LegendComponent,
+  DataZoomComponent,
+  GraphicComponent,
+])
+
+defineProps({
+  options: {
+    type: Object,
+    default() {
+      return {}
+    },
+  },
+  autoResize: {
+    type: Boolean,
+    default: true,
+  },
+  width: {
+    type: String,
+    default: '100%',
+  },
+  height: {
+    type: String,
+    default: '100%',
+  },
+})
+
+const renderChart = ref(false)
+// wait container expand
+nextTick(() => {
+  renderChart.value = true
+})
+</script>
+
+<template>
+  <VCharts
+    v-if="renderChart"
+    :option="options"
+    :autoresize="autoResize"
+    :style="{ width, height }"
+  />
+</template>
+```
+
+---
+
+```vue pages/use-echarts.vue
 <script setup lang="ts">
-const msg = ref('Nuxt3!')
+const option = {
+  title: {
+    text: '饼图',
+    left: 'center',
+  },
+  tooltip: {
+    trigger: 'item',
+  },
+  labelLine: {
+    show: false,
+  },
+  label: {
+    show: false,
+    position: 'center',
+  },
+  legend: {
+    bottom: 15,
+    left: 'center',
+    show: false,
+  },
+  series: [],
+}
 </script>
-
-<template>
-  <div class="page">
-    Hello, {{msg}}
-  </div>
-</template>
 ```
 
 ---
 
-```vue pages/use-tsx/index.vue focus=4:6
-<script setup lang="tsx">
-const msg = ref('Nuxt3!')
-
-const Foo = (props: { msg: string }) => {
-  return <div>{props.msg}</div>
+```vue pages/use-echarts.vue focus=22:42
+<script setup lang="ts">
+const option = {
+  title: {
+    text: '饼图',
+    left: 'center',
+  },
+  tooltip: {
+    trigger: 'item',
+  },
+  labelLine: {
+    show: false,
+  },
+  label: {
+    show: false,
+    position: 'center',
+  },
+  legend: {
+    bottom: 15,
+    left: 'center',
+    show: false,
+  },
+  series: [
+     {
+      type: 'pie',
+      radius: '52%',
+      center: ['50%', '50%'],
+      selectedMode: 'single',
+      data: [
+        { name: '项目 1', value: '50' },
+        { name: '项目 2', value: '15' },
+        { name: '项目 3', value: '30' },
+        { name: '项目 4', value: '15' },
+      ],
+      emphasis: {
+        label: {
+          show: true,
+          fontSize: 28,
+          fontWeight: 'bold',
+        },
+      },
+    },
+  ],
 }
 </script>
-
-<template>
-  <div class="page">
-    Hello, {{msg}}
-  </div>
-</template>
 ```
 
 ---
 
-```vue pages/use-tsx/index.vue focus=13:13
-<script setup lang="tsx">
-const msg = ref('Nuxt3!')
-
-const Foo = (props: { msg: string }) => {
-  return <div>{props.msg}</div>
+```vue pages/use-echarts.vue focus=45:57
+<script setup lang="ts">
+const option = {
+  title: {
+    text: '饼图',
+    left: 'center',
+  },
+  tooltip: {
+    trigger: 'item',
+  },
+  labelLine: {
+    show: false,
+  },
+  label: {
+    show: false,
+    position: 'center',
+  },
+  legend: {
+    bottom: 15,
+    left: 'center',
+    show: false,
+  },
+  series: [
+     {
+      type: 'pie',
+      radius: '52%',
+      center: ['50%', '50%'],
+      selectedMode: 'single',
+      data: [
+        { name: '项目 1', value: '50' },
+        { name: '项目 2', value: '15' },
+        { name: '项目 3', value: '30' },
+        { name: '项目 4', value: '15' },
+      ],
+      emphasis: {
+        label: {
+          show: true,
+          fontSize: 28,
+          fontWeight: 'bold',
+        },
+      },
+    },
+  ],
 }
 </script>
 
 <template>
-  <div class="page">
-    Hello, {{msg}}
-
-    <Foo msg="这是一个TSX组件" />
-  </div>
+  <UContainer class="flex justify-center">
+    <UCard class="mt-40">
+      <ECharts
+        height="500px"
+        width="500px"
+        :option="option"
+      />
+    </UCard>
+  </UContainer>
 </template>
 ```
 
