@@ -1,3 +1,3 @@
 ```
-http://127.0.0.1:3000/scrollycoding-demo
+http://127.0.0.1:8888/scrollycoding-demo
 ```

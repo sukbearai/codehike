@@ -185,7 +185,7 @@ function DynamicScrollycoding({
 
   const tab = state.step
   let step = 0
-  let time = 2000
+  let time = 3000
 
   // 自动播放
   useEffect(() => {
