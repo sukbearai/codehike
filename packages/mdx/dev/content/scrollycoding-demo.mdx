@@ -1,67 +1,164 @@
 <CH.Scrollycoding  showCopyButton={false} rows="focus" showExpandButton={false}>
 
-```json .vscode/launch.json
-{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "server: nuxt",
-      "outputCapture": "std",
-      "program": "${workspaceFolder}/node_modules/nuxi/bin/nuxi.mjs",
-      "args": [
-        "dev",
-        "playground"
-      ]
-    },
-    {
-      "type": "chrome",
-      "request": "launch",
-      "name": "client: chrome",
-      "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}"
-    }
-  ],
+```ts utils/index.ts
+if(import.meta.client) {
+  console.log('运行在客户端的代码')
+}
+```
+---
+
+```ts utils/index.ts focus=5:7
+if(import.meta.client) {
+  console.log('运行在客户端的代码')
 }
 
+if(import.meta.browser) {
+  console.log('运行在客户端的代码')
+}
 ```
 
 ---
 
-```json .vscode/launch.json focus=23:31
-{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "server: nuxt",
-      "outputCapture": "std",
-      "program": "${workspaceFolder}/node_modules/nuxi/bin/nuxi.mjs",
-      "args": [
-        "dev",
-        "playground"
-      ]
-    },
-    {
-      "type": "chrome",
-      "request": "launch",
-      "name": "client: chrome",
-      "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}"
-    }
-  ],
-  "compounds": [
-    {
-      "name": "fullstack: nuxt",
-      "configurations": [
-        "server: nuxt",
-        "client: chrome"
-      ]
-    }
-  ]
+```ts utils/index.ts focus=9:11
+if(import.meta.client) {
+  console.log('运行在客户端的代码')
 }
+
+if(import.meta.browser) {
+  console.log('运行在客户端的代码')
+}
+
+if(import.meta.server) {
+  console.log('运行在服务端的代码')
+}
+```
+
+---
+
+```ts utils/index.ts focus=13:15
+if(import.meta.client) {
+  console.log('运行在客户端的代码')
+}
+
+if(import.meta.browser) {
+  console.log('运行在客户端的代码')
+}
+
+if(import.meta.server) {
+  console.log('运行在服务端的代码')
+}
+
+if(import.meta.nitro) {
+  console.log('运行在服务端的代码')
+}
+```
+
+---
+
+```ts utils/index.ts focus=17:19
+if(import.meta.client) {
+  console.log('运行在客户端的代码')
+}
+
+if(import.meta.browser) {
+  console.log('运行在客户端的代码')
+}
+
+if(import.meta.server) {
+  console.log('运行在服务端的代码')
+}
+
+if(import.meta.nitro) {
+  console.log('运行在服务端的代码')
+}
+
+if(import.meta.dev) {
+  console.log('运行在开发环境的代码')
+}
+```
+
+---
+
+```ts utils/index.ts focus=21:23
+if(import.meta.client) {
+  console.log('运行在客户端的代码')
+}
+
+if(import.meta.browser) {
+  console.log('运行在客户端的代码')
+}
+
+if(import.meta.server) {
+  console.log('运行在服务端的代码')
+}
+
+if(import.meta.nitro) {
+  console.log('运行在服务端的代码')
+}
+
+if(import.meta.dev) {
+  console.log('运行在开发环境的代码')
+}
+
+if(import.meta.test) {
+  console.log('运行在测试环境的代码')
+}
+```
+
+---
+
+```ts utils/index.ts focus=24:27
+if(import.meta.client) {
+  console.log('运行在客户端的代码')
+}
+
+if(import.meta.browser) {
+  console.log('运行在客户端的代码')
+}
+
+if(import.meta.server) {
+  console.log('运行在服务端的代码')
+}
+
+if(import.meta.nitro) {
+  console.log('运行在服务端的代码')
+}
+
+if(import.meta.dev) {
+  console.log('运行在开发环境的代码')
+}
+
+if(import.meta.test) {
+  console.log('运行在测试环境的代码')
+}
+
+if(import.meta.prerender) {
+  console.log('运行在构建的预渲染阶段时的代码')
+}
+```
+
+---
+
+```ts modules/my-module/index.ts
+import { createResolver } from 'nuxt/kit'
+
+// 当前文件的可解析路径
+const resolver = createResolver(import.meta.url)
+
+// 等同于 process.env
+const env = import.meta.env 
+
+export default defineNuxtModule({
+  meta: { name: 'myModule' },
+  setup() {
+    addComponent({
+      name: 
+        'MyModuleComponent',
+      filePath: 
+        resolver.resolve('./components/MyModuleComponent.vue')
+    })
+  }
+})
 ```
 
 </CH.Scrollycoding>
