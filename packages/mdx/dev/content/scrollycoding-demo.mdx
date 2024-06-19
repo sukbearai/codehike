@@ -1,164 +1,129 @@
 <CH.Scrollycoding  showCopyButton={false} rows="focus" showExpandButton={false}>
 
-```ts utils/index.ts
-if(import.meta.client) {
-  console.log('运行在客户端的代码')
-}
-```
----
-
-```ts utils/index.ts focus=5:7
-if(import.meta.client) {
-  console.log('运行在客户端的代码')
-}
-
-if(import.meta.browser) {
-  console.log('运行在客户端的代码')
-}
+```vue pages/profile.vue
+<script setup>
+import User from './User.vue'
+</script>
 ```
 
 ---
 
-```ts utils/index.ts focus=9:11
-if(import.meta.client) {
-  console.log('运行在客户端的代码')
-}
+```vue pages/profile.vue focus=4:9
+<script setup>
+import User from './User.vue'
 
-if(import.meta.browser) {
-  console.log('运行在客户端的代码')
+const user = {
+  name: 'suk.bear',
+  bio: 'lucky every day.',
+  email: 'suk.bear.suwu@gmail.com',
+  address: 'China'
 }
-
-if(import.meta.server) {
-  console.log('运行在服务端的代码')
-}
+</script>
 ```
 
 ---
 
-```ts utils/index.ts focus=13:15
-if(import.meta.client) {
-  console.log('运行在客户端的代码')
-}
+```vue pages/profile.vue focus=13:18
+<script setup>
+import User from './User.vue'
 
-if(import.meta.browser) {
-  console.log('运行在客户端的代码')
+const user = {
+  name: 'suk.bear',
+  bio: 'lucky every day.',
+  email: 'suk.bear.suwu@gmail.com',
+  address: 'China'
 }
+</script>
 
-if(import.meta.server) {
-  console.log('运行在服务端的代码')
-}
-
-if(import.meta.nitro) {
-  console.log('运行在服务端的代码')
-}
+<template>
+  <User 
+    :name="user.name"
+    :bio="user.bio"
+    :email="user.email"
+    :address="user.address"
+  />
+</template>
 ```
 
 ---
 
-```ts utils/index.ts focus=17:19
-if(import.meta.client) {
-  console.log('运行在客户端的代码')
-}
+```vue pages/profile.vue focus=13:13
+<script setup>
+import User from './User.vue'
 
-if(import.meta.browser) {
-  console.log('运行在客户端的代码')
+const user = {
+  name: 'suk.bear',
+  bio: 'lucky every day.',
+  email: 'suk.bear.suwu@gmail.com',
+  address: 'China'
 }
+</script>
 
-if(import.meta.server) {
-  console.log('运行在服务端的代码')
-}
-
-if(import.meta.nitro) {
-  console.log('运行在服务端的代码')
-}
-
-if(import.meta.dev) {
-  console.log('运行在开发环境的代码')
-}
+<template>
+  <User v-bind="user"/>
+</template>
 ```
 
 ---
 
-```ts utils/index.ts focus=21:23
-if(import.meta.client) {
-  console.log('运行在客户端的代码')
-}
+```vue pages/profile.vue focus=4:14
+<script setup>
+import User from './User.vue'
 
-if(import.meta.browser) {
-  console.log('运行在客户端的代码')
-}
-
-if(import.meta.server) {
-  console.log('运行在服务端的代码')
-}
-
-if(import.meta.nitro) {
-  console.log('运行在服务端的代码')
-}
-
-if(import.meta.dev) {
-  console.log('运行在开发环境的代码')
-}
-
-if(import.meta.test) {
-  console.log('运行在测试环境的代码')
-}
-```
-
----
-
-```ts utils/index.ts focus=24:27
-if(import.meta.client) {
-  console.log('运行在客户端的代码')
-}
-
-if(import.meta.browser) {
-  console.log('运行在客户端的代码')
-}
-
-if(import.meta.server) {
-  console.log('运行在服务端的代码')
-}
-
-if(import.meta.nitro) {
-  console.log('运行在服务端的代码')
-}
-
-if(import.meta.dev) {
-  console.log('运行在开发环境的代码')
-}
-
-if(import.meta.test) {
-  console.log('运行在测试环境的代码')
-}
-
-if(import.meta.prerender) {
-  console.log('运行在构建的预渲染阶段时的代码')
-}
-```
-
----
-
-```ts modules/my-module/index.ts
-import { createResolver } from 'nuxt/kit'
-
-// 当前文件的可解析路径
-const resolver = createResolver(import.meta.url)
-
-// 等同于 process.env
-const env = import.meta.env 
-
-export default defineNuxtModule({
-  meta: { name: 'myModule' },
-  setup() {
-    addComponent({
-      name: 
-        'MyModuleComponent',
-      filePath: 
-        resolver.resolve('./components/MyModuleComponent.vue')
-    })
+const userEventHandlers = {
+  updateName(newName) {
+    // ...
+  },
+  deleteUser(uid) {
+    // ...
+  },
+  addFriend(friend) {
+    // ...
   }
-})
+}
+
+const user = {
+  name: 'suk.bear',
+  bio: 'lucky every day.',
+  email: 'suk.bear.suwu@gmail.com',
+  address: 'China'
+}
+</script>
+
+<template>
+  <User v-bind="user"/>
+</template>
+```
+
+---
+
+```vue pages/profile.vue focus=25:25
+<script setup>
+import User from './User.vue'
+
+const userEventHandlers = {
+  updateName(newName) {
+    // ...
+  },
+  deleteUser(uid) {
+    // ...
+  },
+  addFriend(friend) {
+    // ...
+  }
+}
+
+const user = {
+  name: 'suk.bear',
+  bio: 'lucky every day.',
+  email: 'suk.bear.suwu@gmail.com',
+  address: 'China'
+}
+</script>
+
+<template>
+  <User v-bind="user" v-on="userEventHandlers"/>
+</template>
 ```
 
 </CH.Scrollycoding>
