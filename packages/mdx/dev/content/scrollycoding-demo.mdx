@@ -1,129 +1,77 @@
 <CH.Scrollycoding  showCopyButton={false} rows="focus" showExpandButton={false}>
 
-```vue pages/profile.vue
-<script setup>
-import User from './User.vue'
-</script>
+```ts .env.dev
+// 开发环境
+NUXT_PUBLIC_BASE_URL="https://dev.example.com"
 ```
 
 ---
 
-```vue pages/profile.vue focus=4:9
-<script setup>
-import User from './User.vue'
+```ts .env.test
+// 测试环境
+NUXT_PUBLIC_BASE_URL="https://test.example.com"
+```
 
-const user = {
-  name: 'suk.bear',
-  bio: 'lucky every day.',
-  email: 'suk.bear.suwu@gmail.com',
-  address: 'China'
+---
+
+```ts .env.prod
+// 生产环境
+NUXT_PUBLIC_BASE_URL="https://example.com"
+```
+
+---
+
+```ts utils/network/request.ts
+const request = axios.create({
+  withCredentials: true, // 跨域携带cookie
+  timeout: 1000 * 20,
+})
+```
+
+---
+
+```ts utils/network/request.ts focus=1:1
+const runtimeConfig = useRuntimeConfig()
+
+const request = axios.create({
+  withCredentials: true, // 跨域携带cookie
+  timeout: 1000 * 20,
+})
+```
+
+---
+
+```ts utils/network/request.ts focus=4:4
+const runtimeConfig = useRuntimeConfig()
+
+const request = axios.create({
+  baseURL: runtimeConfig.public.baseUrl,
+  withCredentials: true, // 跨域携带cookie
+  timeout: 1000 * 20,
+})
+```
+
+---
+
+```json package.json
+{
+  "name": "usenuxt",
+  "type": "module",
 }
-</script>
 ```
 
 ---
 
-```vue pages/profile.vue focus=13:18
-<script setup>
-import User from './User.vue'
-
-const user = {
-  name: 'suk.bear',
-  bio: 'lucky every day.',
-  email: 'suk.bear.suwu@gmail.com',
-  address: 'China'
-}
-</script>
-
-<template>
-  <User 
-    :name="user.name"
-    :bio="user.bio"
-    :email="user.email"
-    :address="user.address"
-  />
-</template>
-```
-
----
-
-```vue pages/profile.vue focus=13:13
-<script setup>
-import User from './User.vue'
-
-const user = {
-  name: 'suk.bear',
-  bio: 'lucky every day.',
-  email: 'suk.bear.suwu@gmail.com',
-  address: 'China'
-}
-</script>
-
-<template>
-  <User v-bind="user"/>
-</template>
-```
-
----
-
-```vue pages/profile.vue focus=4:14
-<script setup>
-import User from './User.vue'
-
-const userEventHandlers = {
-  updateName(newName) {
-    // ...
-  },
-  deleteUser(uid) {
-    // ...
-  },
-  addFriend(friend) {
-    // ...
+```json package.json focus=4:8
+{
+  "name": "usenuxt",
+  "type": "module",
+  "script": {
+    "build:dev": "nuxi build --dotenv .env.dev",
+    "build:test": "nuxi build --dotenv .env.test",
+    "build:prod": "nuxi build --dotenv .env.prod",
   }
 }
-
-const user = {
-  name: 'suk.bear',
-  bio: 'lucky every day.',
-  email: 'suk.bear.suwu@gmail.com',
-  address: 'China'
-}
-</script>
-
-<template>
-  <User v-bind="user"/>
-</template>
-```
-
----
-
-```vue pages/profile.vue focus=25:25
-<script setup>
-import User from './User.vue'
-
-const userEventHandlers = {
-  updateName(newName) {
-    // ...
-  },
-  deleteUser(uid) {
-    // ...
-  },
-  addFriend(friend) {
-    // ...
-  }
-}
-
-const user = {
-  name: 'suk.bear',
-  bio: 'lucky every day.',
-  email: 'suk.bear.suwu@gmail.com',
-  address: 'China'
-}
-</script>
-
-<template>
-  <User v-bind="user" v-on="userEventHandlers"/>
-</template>
 ```
 
 </CH.Scrollycoding>
