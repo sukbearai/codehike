@@ -36,7 +36,7 @@
     "./dist/index.esm.mjs": "./dist/index.browser.mjs"
   },
   "scripts": {
-    "dev": "next -p 8888",
+    "dev": "next -p 9999",
     "build-test": "next build",
     "build": "rollup -c rollup.config.js",
     "watch": "rollup --watch -c rollup.config.js",
